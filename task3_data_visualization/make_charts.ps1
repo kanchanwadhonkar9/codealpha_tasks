@@ -1,6 +1,6 @@
 Add-Type -AssemblyName System.Drawing
 $ErrorActionPreference = "Stop"
-$P = [char]0xA3  # pound sign
+$POUND = [char]0xA3  # pound sign
 
 $base = "C:\Users\Kanch\Downloads\image\codealpha_tasks\task3_data_visualization"
 $outDir = Join-Path $base "charts"
@@ -139,7 +139,7 @@ $maxVal = ($avgs | Measure-Object -Maximum).Maximum
 for ($i = 0; $i -le 4; $i++) {
     $y = $bottom - ($ph * $i / 4)
     $g.DrawLine($penGrid, [float]$left, [float]$y, [float]$right, [float]$y)
-    $g.DrawString(("${P}" + (FormatNum ([double]($maxVal * $i / 4)))), $fontTick, $brushGray, 40, $y - 8)
+    $g.DrawString(("${POUND}" + (FormatNum ([double]($maxVal * $i / 4)))), $fontTick, $brushGray, 40, $y - 8)
 }
 $slot = $pw / 5
 for ($i = 0; $i -lt 5; $i++) {
@@ -148,7 +148,7 @@ for ($i = 0; $i -lt 5; $i++) {
     $bh = if ($maxVal -gt 0) { $ph * $avgs[$i] / $maxVal } else { 0 }
     $y = $bottom - $bh
     FillRect $g $C_PURPLE $x $y $bw $bh
-    $g.DrawString(("${P}" + ("{0:N1}" -f $avgs[$i])), $fontTick, $brushText, [float]($x + $bw/2 - 18), [float]($y - 18))
+    $g.DrawString(("${POUND}" + ("{0:N1}" -f $avgs[$i])), $fontTick, $brushText, [float]($x + $bw/2 - 18), [float]($y - 18))
     $g.DrawString(($i + 1).ToString(), $fontLabel, $brushText, [float]($x + $bw/2 - 5), [float]($bottom + 8))
 }
 DrawAxes $g $left $top $right $bottom
@@ -178,7 +178,7 @@ $gmin = $min; $gmax = $max
 for ($i = 0; $i -le 4; $i++) {
     $y = $bottom - ($ph * $i / 4)
     $g.DrawLine($penGrid, [float]$left, [float]$y, [float]$right, [float]$y)
-    $g.DrawString(("${P}" + (FormatNum ([double]($gmin + ($gmax-$gmin)*$i/4)))), $fontTick, $brushGray, 40, $y - 8)
+    $g.DrawString(("${POUND}" + (FormatNum ([double]($gmin + ($gmax-$gmin)*$i/4)))), $fontTick, $brushGray, 40, $y - 8)
 }
 $slot = $pw / 5
 for ($r = 1; $r -le 5; $r++) {
@@ -225,7 +225,7 @@ $xmin = 0.5; $xmax = 5.5
 for ($i = 0; $i -le 4; $i++) {
     $y = $bottom - ($ph * $i / 4)
     $g.DrawLine($penGrid, [float]$left, [float]$y, [float]$right, [float]$y)
-    $g.DrawString(("${P}" + (FormatNum ([double]($min + ($max-$min)*$i/4)))), $fontTick, $brushGray, 40, $y - 8)
+    $g.DrawString(("${POUND}" + (FormatNum ([double]($min + ($max-$min)*$i/4)))), $fontTick, $brushGray, 40, $y - 8)
 }
 for ($i = 0; $i -le 5; $i++) {
     $xv = $i + 1
@@ -263,7 +263,7 @@ $maxVal = ($idx | ForEach-Object { $prices[$_] } | Measure-Object -Maximum).Maxi
 for ($i = 0; $i -le 4; $i++) {
     $x = $left + $pw * $i / 4
     $g.DrawLine($penGrid, [float]$x, [float]$top, [float]$x, [float]$bottom)
-    $g.DrawString(("${P}" + (FormatNum ([double]($maxVal * $i / 4)))), $fontTick, $brushGray, [float]($x-15), [float]($bottom+8))
+    $g.DrawString(("${POUND}" + (FormatNum ([double]($maxVal * $i / 4)))), $fontTick, $brushGray, [float]($x-15), [float]($bottom+8))
 }
 $slot = $ph / 10
 for ($j = 0; $j -lt $idx.Count; $j++) {
@@ -274,7 +274,7 @@ for ($j = 0; $j -lt $idx.Count; $j++) {
     $label = $titles[$i]
     if ($label.Length -gt 32) { $label = $label.Substring(0, 32) + "..." }
     $g.DrawString($label, $fontTick, $brushText, 90, [float]($y + 4))
-    $g.DrawString(("${P}" + ("{0:N2}" -f $prices[$i])), $fontTick, $brushText, [float]($left + $bw + 5), [float]($y + 4))
+    $g.DrawString(("${POUND}" + ("{0:N2}" -f $prices[$i])), $fontTick, $brushText, [float]($left + $bw + 5), [float]($y + 4))
 }
 DrawAxes $g $left $top $right $bottom
 $g.DrawString("Price (GBP)", $fontLabel, $brushText, [float]($left+$pw/2-40), [float]($bottom+32))
@@ -284,7 +284,7 @@ Save-Canvas $c (Join-Path $outDir "06_top10_expensive.png")
 # 7. Price band share (pie)
 # ============================================================
 $bands = @(0,0,0,0)
-$bandLabels = @("Budget (<${P}20)", "Mid (${P}20-35)", "Premium (${P}35-50)", "Luxury (${P}50+)")
+$bandLabels = @("Budget (<${POUND}20)", "Mid (${POUND}20-35)", "Premium (${POUND}35-50)", "Luxury (${POUND}50+)")
 foreach ($p in $prices) {
     if ($p -lt 20) { $bands[0]++ }
     elseif ($p -lt 35) { $bands[1]++ }
