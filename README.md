@@ -1,33 +1,57 @@
-# codealpha_tasks
+# CodeAlpha Data Analytics Internship
 
-CodeAlpha Data Science Internship – Task Submissions
+**Candidate:** Kanchan Wadhonkar
+
+This repository contains the completed tasks for the **CodeAlpha Data Analytics Internship**.
 
 ## Tasks Completed
 
 | Task | Title | Folder |
 |------|-------|--------|
-| 1 | Exploratory Data Analysis (EDA) | `task1_eda/` |
-| 2 | Linear Regression from Scratch | `task2_linear_regression/` |
+| 1 | Web Scraping | `task1_web_scraping/` |
+| 2 | Exploratory Data Analysis (EDA) | `task2_eda/` |
+| 3 | Data Visualization | `task3_data_visualization/` |
+
+## Repository Structure
+
+```
+codealpha_tasks/
+├── README.md
+├── task1_web_scraping/
+│   ├── scraper.py
+│   ├── books_dataset.csv
+│   └── README.md
+├── task2_eda/
+│   ├── eda.py
+│   ├── books_dataset.csv
+│   └── README.md
+└── task3_data_visualization/
+    ├── visualization.py
+    ├── books_dataset.csv
+    ├── README.md
+    └── charts/            # 7 generated visuals
+```
+
+## Dataset
+A real dataset of **400 books** scraped from [books.toscrape.com](http://books.toscrape.com) with the fields:
+`title`, `price_gbp`, `rating`, `in_stock`, `stock_count`, `product_url`.
 
 ## How to Run
 
-### Task 1 – EDA
 ```bash
-cd task1_eda
-python task1_eda.py
+pip install pandas numpy matplotlib seaborn beautifulsoup4 requests
+
+# Task 1 – scrape fresh data
+python task1_web_scraping/scraper.py
+
+# Task 2 – EDA
+python task2_eda/eda.py
+
+# Task 3 – visualizations
+python task3_data_visualization/visualization.py
 ```
 
-### Task 2 – Linear Regression from Scratch
-```bash
-cd task2_linear_regression
-python linear_regression_scratch.py
-```
+## CodeAlpha
+Completed as part of the **CodeAlpha Data Analytics Internship**.
 
-## Requirements
-```bash
-pip install pandas numpy matplotlib seaborn scikit-learn
-```
-
-## Submission
-Repository created for the CodeAlpha internship task submission.
-Link: https://github.com/<your-username>/codealpha_tasks
+Repository: https://github.com/kanchanwadhonkar9/codealpha_tasks
